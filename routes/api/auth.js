@@ -10,6 +10,8 @@ router.post('/login', validateBody(schemas.loginSchema), ctrlWrapper(ctrl.login)
 router.get("/current", authenticate, ctrlWrapper(ctrl.getCurrent));
 router.get("/logout", authenticate, ctrlWrapper(ctrl.logout));
 router.patch("/subscription", authenticate, ctrlWrapper(ctrl.updateSubscription));
+// upload.single("avatar") створюємо маршрут та считуємо файл запиту
+// router.patch("/avatars", authenticate, upload.single("avatar"), ctrlWrapper(ctrl.updateAvatar));
 
 
 module.exports = router;

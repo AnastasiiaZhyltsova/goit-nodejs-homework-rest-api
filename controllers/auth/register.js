@@ -1,6 +1,7 @@
 const { User } = require('../../models/user');
 const { RequestError } = require('../../helpers');
 const bcrypt = require('bcrypt');
+const gravatar = require("gravatar");
 
 
 const register = async (req, res) => {
@@ -14,7 +15,8 @@ const register = async (req, res) => {
   }
   // реєстрація нового юзера та хешування паролю
   const hashPassword = await bcrypt.hash(password, 10);
-  const result = await User.create({name, email, password: hashPassword});
+  const avatarURL = gravatar.url(email);
+  const result = await User.create({name, email, password: hashPassword}, avatarURL);
   res.status(201).json({
     name: result.name,
     email: result.email,
