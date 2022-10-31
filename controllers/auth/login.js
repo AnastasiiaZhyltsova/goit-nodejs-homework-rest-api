@@ -12,6 +12,10 @@ const login = async (req, res) => {
   if (!user) {
     throw RequestError(401, "Email or password is wrong");
   }
+  // потрбно додати в login перевірку на верифікації
+  if (!user.verify) {
+    throw RequestError(401, "Email not verify");
+  }
      // метод який перевіряє чи є строка result захешованною версією password (повертає true(захешоване) або false);
   const passwordCompare = await bcrypt.compare(password, user.password);
   if (!passwordCompare) {
