@@ -3,8 +3,10 @@ const logger = require('morgan');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
-
+// змінні оточення
 dotenv.config();
+
+
 
 const contactsRouter = require('./routes/api/contacts');
 const authRouter = require('./routes/api/auth');
@@ -17,7 +19,7 @@ mongoose.connect(DB_HOST)
   .then(() => console.log("Database connection successful"))
   .catch(error => {
     console.log(error.message);
-    // process.exit(1);
+    process.exit(1);
   });
 
 
